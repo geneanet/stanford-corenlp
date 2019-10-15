@@ -12,7 +12,7 @@ setup(
     url='https://github.com/Lynten/stanford-corenlp',
     keywords=['NLP', 'CL', 'natural language processing',
               'computational linguistics'],
-    install_requires=['psutil', 'requests'],
+    install_requires=['requests'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -37,4 +37,7 @@ setup(
 
     license="MIT License",
 
+    extras_require={
+        'autostart': ['psutil'],
+    }
 )

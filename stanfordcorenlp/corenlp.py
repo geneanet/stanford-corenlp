@@ -1,16 +1,12 @@
 # _*_coding:utf-8_*_
 from __future__ import print_function
 
-import glob
 import logging
 import os
 import re
-import socket
-import subprocess
 import sys
 import time
 
-import psutil
 import requests
 
 try:
@@ -39,7 +35,10 @@ class StanfordCoreNLP(object):
             self.url = path_or_host + ':' + str(port)
             logging.info('Using an existing server {}'.format(self.url))
         else:
-
+            import glob
+            import socket
+            import subprocess
+            import psutil
             # Check Java
             if not subprocess.call(['java', '-version'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT) == 0:
                 raise RuntimeError('Java not found.')
@@ -128,6 +127,7 @@ class StanfordCoreNLP(object):
     def close(self):
         logging.info('Cleanup...')
         if hasattr(self, 'p'):
+            import psutil
             try:
                 parent = psutil.Process(self.p.pid)
             except psutil.NoSuchProcess:
